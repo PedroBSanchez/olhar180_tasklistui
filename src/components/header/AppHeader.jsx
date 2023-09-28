@@ -11,7 +11,7 @@ const AppHeader = () => {
     <AppBar position="static">
       <HeaderWrapper>
         <Grid container>
-          <Grid item xs={4} paddingTop={2} paddingLeft={3}>
+          <Grid item sm={4} paddingTop={2} paddingLeft={3}>
             <LogoHeader src={olhar180Logo} width={70} />
           </Grid>
         </Grid>

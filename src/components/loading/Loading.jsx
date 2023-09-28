@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Backdrop, CircularProgress } from "@mui/material";
+import { Backdrop } from "@mui/material";
 import { Loader, LoaderText } from "./LoadingStyles";
 const Loading = (props) => {
   return (

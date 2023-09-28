@@ -50,7 +50,7 @@ const Home = () => {
           marginTop={2}
         >
           <Grid item>
-            <DefaultTitle>Task List</DefaultTitle>
+            <DefaultTitle>Lista de Tarefas</DefaultTitle>
           </Grid>
         </Grid>
         <Grid container direction="row">
@@ -74,7 +74,7 @@ const Home = () => {
           justifyContent={"center"}
           justifyItems={"center"}
         >
-          <Grid item md={10} xs={12}>
+          <Grid item md={10} sm={12}>
             <TasksTable tasks={tasks} getTasks={getTasks} />
           </Grid>
         </Grid>

@@ -12,3 +12,7 @@ export const LogoHeader = styled.img`
 export const DefaultTitle = styled.h1`
   font-family: "Quicksand";
 `;
+
+export const DefaultSubTitle = styled.h3`
+  font-family: "Quicksand";
+`;

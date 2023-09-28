@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import AppHeader from "../components/header/AppHeader";
 import {
   Container,
@@ -17,12 +17,14 @@ import {
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { DefaultSubTitle, DefaultTitle } from "../styles/styles";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "../config/axiosConfig";
 import Loading from "../components/loading/Loading";
 
-const CreateTask = () => {
+const EditTask = () => {
+  const { id } = useParams();
+
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
@@ -33,6 +35,8 @@ const CreateTask = () => {
 
   const [newTaskConclusionDate, setNewTaskConclusionDate] = useState();
   const [newTaskPriority, setNewTaskPriority] = useState();
+  const [defaultPriority, setDefaultPriority] = useState();
+
   const [priorities, setPriorities] = useState(["BAIXA", "MÉDIA", "ALTA"]);
 
   const handleCreateNewTask = async () => {
@@ -93,6 +97,44 @@ const CreateTask = () => {
     setIsValid(true);
     return true;
   };
+
+  const findTask = async () => {
+    setLoading(true);
+    await axios
+      .get(`/tasks/${id}`)
+      .then((response) => {
+        setLoading(false);
+        setNewTaskTitle(response.data.title);
+        setNewTaskDescription(response.data.description);
+        setNewTaskPriority(response.data.priority);
+        setDefaultPriority(response.data.priority);
+        let date = new Date(response.data.conclusionDate);
+
+        setNewTaskConclusionDate(formatDateForInput(date));
+      })
+      .catch((error) => {
+        setLoading(false);
+        Swal.fire({ title: "Tarefa não encontrada", icon: "error" });
+        navigate("/");
+      });
+  };
+
+  const formatDateForInput = (date) => {
+    if (date instanceof Date) {
+      date.setHours(date.getHours() + 3);
+      const year = date.getFullYear();
+      const month = `0${date.getMonth() + 1}`.slice(-2);
+      const day = `0${date.getDate()}`.slice(-2);
+      const hours = `0${date.getHours()}`.slice(-2);
+      const minutes = `0${date.getMinutes()}`.slice(-2);
+
+      return `${year}-${month}-${day}T${hours}:${minutes}`;
+    }
+  };
+
+  useEffect(() => {
+    findTask();
+  }, []);
 
   return (
     <>
@@ -183,7 +225,6 @@ const CreateTask = () => {
                       <NativeSelect
                         id="inputPriority"
                         value={newTaskPriority}
-                        label="Prioridade"
                         onChange={(e) => {
                           setNewTaskPriority(e.target.value);
                           validateFields(
@@ -194,7 +235,6 @@ const CreateTask = () => {
                           );
                         }}
                       >
-                        <option disabled selected></option>
                         {priorities.map((priority, index) => {
                           return (
                             <option key={index} value={priority}>
@@ -208,7 +248,8 @@ const CreateTask = () => {
                   <Grid item marginTop={1} md={6} sm={12}>
                     <TextField
                       id="inputConclusionDate"
-                      variant="outlined"
+                      variant="standard"
+                      focused
                       label="Data de Conclusão"
                       type="datetime-local"
                       value={newTaskConclusionDate}
@@ -247,4 +288,4 @@ const CreateTask = () => {
   );
 };
 
-export default CreateTask;
+export default EditTask;
