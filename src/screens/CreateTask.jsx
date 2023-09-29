@@ -208,7 +208,7 @@ const CreateTask = () => {
                   <Grid item marginTop={1} md={6} sm={12}>
                     <TextField
                       id="inputConclusionDate"
-                      variant="outlined"
+                      variant="standard"
                       label="Data de Conclusão"
                       type="datetime-local"
                       value={newTaskConclusionDate}

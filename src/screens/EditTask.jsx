@@ -55,8 +55,8 @@ const EditTask = () => {
     dateFormated.setHours(dateFormated.getHours() - 3);
 
     const options = {
-      url: "/tasks",
-      method: "POST",
+      url: `/tasks/${id}`,
+      method: "PUT",
       data: {
         title: newTaskTitle,
         description: newTaskDescription,
@@ -70,20 +70,12 @@ const EditTask = () => {
       .request(options)
       .then((response) => {
         setLoading(false);
-        setNewTaskConclusionDate(null);
-        setNewTaskTitle(null);
-        setNewTaskDescription(null);
-        setNewTaskPriority(null);
         setIsValid(false);
-        document.getElementById("inputTitle").value = null;
-        document.getElementById("inputDescription").value = null;
-        document.getElementById("inputPriority").value = null;
-        document.getElementById("inputConclusionDate").value = null;
-        Swal.fire({ title: "Tarefa cadastrada com sucesso", icon: "success" });
+        Swal.fire({ title: "Tarefa Editada com sucesso", icon: "success" });
       })
       .catch((error) => {
         setLoading(false);
-        Swal.fire({ title: "Falha ao cadastrar tarefa", icon: "error" });
+        Swal.fire({ title: "Falha ao editar tarefa", icon: "error" });
       });
   };
 

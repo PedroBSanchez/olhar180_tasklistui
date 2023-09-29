@@ -111,9 +111,7 @@ const TasksTable = (props) => {
               <TableCell>
                 <b>Concluída</b>
               </TableCell>
-              <TableCell>
-                <b>Ações</b>
-              </TableCell>
+              <TableCell></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
