@@ -107,7 +107,7 @@ const EditTask = () => {
       .catch((error) => {
         setLoading(false);
         Swal.fire({ title: "Tarefa não encontrada", icon: "error" });
-        navigate("/");
+        navigate("/home");
       });
   };
 
@@ -149,7 +149,7 @@ const EditTask = () => {
             variant="outlined"
             endIcon={<ArrowBackIcon />}
             onClick={() => {
-              navigate("/");
+              navigate("/home");
             }}
           >
             Voltar

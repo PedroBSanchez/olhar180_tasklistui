@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AppHeader from "../components/header/AppHeader";
 import { Button, Container, Grid, Typography } from "@mui/material";
 import { DefaultTitle } from "../styles/styles";
@@ -8,6 +8,7 @@ import axios from "../config/axiosConfig";
 import TasksTable from "../components/tasksTable/TasksTable";
 import Loading from "../components/loading/Loading";
 import swal from "sweetalert2";
+import { verifyToken } from "../shared/verifyToken";
 
 const Home = () => {
   const [loading, setLoading] = useState(false);
@@ -34,7 +35,6 @@ const Home = () => {
           title: "Erro ao carregar lista de tarefas",
           icon: "error",
         });
-        console.log(error);
       });
   };
 
@@ -60,7 +60,7 @@ const Home = () => {
               variant="contained"
               endIcon={<AddBoxIcon />}
               onClick={() => {
-                handleNavigate("cadastro");
+                handleNavigate("/cadastro");
               }}
             >
               Cadastrar

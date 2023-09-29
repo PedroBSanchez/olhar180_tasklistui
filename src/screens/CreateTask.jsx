@@ -6,8 +6,6 @@ import {
   Card,
   CardContent,
   TextField,
-  Select,
-  MenuItem,
   InputLabel,
   FormControl,
   CardActions,
@@ -115,7 +113,7 @@ const CreateTask = () => {
             variant="outlined"
             endIcon={<ArrowBackIcon />}
             onClick={() => {
-              navigate("/");
+              navigate("/home");
             }}
           >
             Voltar
