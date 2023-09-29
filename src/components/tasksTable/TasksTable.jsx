@@ -143,8 +143,8 @@ const TasksTable = (props) => {
                     )}
                   </TableCell>
                   <TableCell style={{ paddingLeft: "30px" }}>
-                    {task.isOpen && <CheckCircleIcon color="success" />}
-                    {!task.isOpen && <DoDisturbOnIcon color="error" />}
+                    {!task.isOpen && <CheckCircleIcon color="success" />}
+                    {task.isOpen && <DoDisturbOnIcon color="error" />}
                   </TableCell>
                   <TableCell>
                     <Tooltip title="Remover">
