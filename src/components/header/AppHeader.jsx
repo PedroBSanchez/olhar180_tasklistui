@@ -2,7 +2,8 @@ import React from "react";
 
 import { AppBar, Grid } from "@mui/material";
 
-import olhar180Logo from "../../assets/olhar180Logo.jpg";
+import olhar180Logo from "../../assets/olhar180Logo.png";
+
 import { HeaderWrapper, LogoHeader } from "../../styles/styles";
 import App from "../../App";
 
