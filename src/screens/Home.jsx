@@ -51,10 +51,6 @@ const Home = () => {
       })
       .catch((error) => {
         setLoading(false);
-        swal.fire({
-          title: "Erro ao carregar lista de tarefas",
-          icon: "error",
-        });
       });
   };
 
