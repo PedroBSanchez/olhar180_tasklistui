@@ -99,9 +99,10 @@ const LoginDefault = () => {
       .then(async (response) => {
         setLoading(false);
         setShowModalSignUp(false);
-        await cleanLocalCache();
+        localStorage.clear();
         localStorage.setItem("apiToken", response.data.token);
         navigate("/home");
+        window.location.reload();
       })
       .catch((error) => {
         setLoading(false);
@@ -115,15 +116,6 @@ const LoginDefault = () => {
           icon: "error",
         });
       });
-  };
-
-  const cleanLocalCache = async () => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        localStorage.clear();
-        resolve();
-      }, 1000);
-    });
   };
 
   return (
