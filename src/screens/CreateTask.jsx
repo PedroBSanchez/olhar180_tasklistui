@@ -17,7 +17,7 @@ import { DefaultSubTitle, DefaultTitle } from "../styles/styles";
 
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import axios from "../config/axiosConfig";
+import axios from "axios";
 import Loading from "../components/loading/Loading";
 
 const CreateTask = () => {
@@ -48,9 +48,14 @@ const CreateTask = () => {
     let dateFormated = new Date(newTaskConclusionDate);
     dateFormated.setHours(dateFormated.getHours() - 3);
 
+    const token = localStorage.getItem("apiToken");
     const options = {
-      url: "/tasks",
+      url: `${import.meta.env.VITE_API_URL}/tasks`,
       method: "POST",
+      headers: {
+        ContentType: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
       data: {
         title: newTaskTitle,
         description: newTaskDescription,
